@@ -8,7 +8,9 @@ const Stack = createNativeStackNavigator();
 export const NavigatorContainer = () => {
     return(
         <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator screenOptions={{
+                headerShown: false
+            }}>
                 <Stack.Screen name="Test" component={AuthorizationScreen} />
             </Stack.Navigator>
         </NavigationContainer>
