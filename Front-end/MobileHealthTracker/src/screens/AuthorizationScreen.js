@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, SafeAreaView, Alert, TouchableOpacity, View, ImageBackground } from 'react-native';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading'
-import TextField from '../../ui/TextField';
+import TextField from '../components/TextField';
 
 const fonts = () => Font.loadAsync({
   'lobster': require('../../assets/fonts/Lobster-Regular.ttf')
@@ -32,7 +32,7 @@ export default function AuthorizationScreen({ it, setIt }) {
   }
   return (
     <SafeAreaView style={styles.container}>
-      <ImageBackground style={styles.imageBkg} source={require('../../assets/authBkg.jpg')} resizeMode='cover'>
+      <ImageBackground style={styles.imageBkg} source={require('../../images/authBkg.jpg')} resizeMode='cover'>
         <Text style={styles.header}>Wellcome!</Text>
         <TextField
           onChangeText={(value) => setLogin(value)}
