@@ -1,12 +1,11 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import AuthorizationScreen from "../src/screens/AuthorizationScreen";
-import { TabNavigator } from "./TabNavigator";
+import TabNavigator from "./TabNavigator";
 
 const Stack = createNativeStackNavigator();
 
-export const NavigatorContainer = () => {
+const NavigatorContainer = () => {
     return(
         <NavigationContainer>
             <Stack.Navigator screenOptions={{
@@ -18,3 +17,5 @@ export const NavigatorContainer = () => {
         </NavigationContainer>
     );
 };
+
+export default NavigatorContainer;
