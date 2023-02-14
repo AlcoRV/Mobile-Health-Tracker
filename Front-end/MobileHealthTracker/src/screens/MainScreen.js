@@ -4,17 +4,17 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import * as Font from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const loadFont = () => Font.loadAsync({
+const loadFonts = () => Font.loadAsync({
     'montserrat': require('../../assets/fonts/Lobster-Regular.ttf')
   });
 
 const MainScreen = () => {
     
-    const [isFontLoaded, setIsFontLoaded] = React.useState(false);
+    const [isFontsLoaded, setIsFontsLoaded] = React.useState(false);
 
-    if (!isFontLoaded){
+    if (!isFontsLoaded){
         return(
-          <AppLoading startAsync={loadFont} onFinish={() => setIsFontLoaded(true)} onError={console.warn} />
+          <AppLoading startAsync={loadFonts} onFinish={() => setIsFontsLoaded(true)} onError={console.warn} />
         );
       }
 

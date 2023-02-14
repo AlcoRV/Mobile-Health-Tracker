@@ -4,7 +4,7 @@ import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading'
 import TextField from '../components/TextField';
 
-const fonts = () => Font.loadAsync({
+const loadFonts = () => Font.loadAsync({
   'lobster': require('../../assets/fonts/Lobster-Regular.ttf')
 });
 
@@ -13,7 +13,7 @@ export default function AuthorizationScreen({ it, setIt }) {
   const [login, setLogin] = React.useState(null);
   const [password, setPassword] = React.useState(null);  
   const [password2, setPassword2] = React.useState(null); 
-  const [font, setFont] = React.useState(false);
+  const [isFontsLoaded, setIsFontsLoaded] = React.useState(false);
   const [isRegister, setIsRegister] = React.useState(false);
 
   const getAlert = () => { if(!isRegister || password == password2) 
@@ -25,9 +25,9 @@ export default function AuthorizationScreen({ it, setIt }) {
                             }  
                           }
 
-  if (!font){
+  if (!isFontsLoaded){
     return(
-      <AppLoading startAsync={fonts} onFinish={() => setFont(true)} onError={console.warn} />
+      <AppLoading startAsync={loadFonts} onFinish={() => setIsFontsLoaded(true)} onError={console.warn} />
     );
   }
   return (
