@@ -3,9 +3,10 @@ import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import * as Font from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
+import MenuItem from "../components/MenuItem";
 
 const loadFonts = () => Font.loadAsync({
-    'montserrat': require('../../assets/fonts/Lobster-Regular.ttf')
+    'lobster': require('../../assets/fonts/Lobster-Regular.ttf')
   });
 
 const MainScreen = () => {
@@ -23,9 +24,19 @@ const MainScreen = () => {
         style={styles.container}
         start={{x: 0, y: 0}}
         end={{x: 1, y: 1}}>
-            <View style={styles.avatar}>
-                <Image height={100} width={100} source={require('../../images/profile.png')} />
-                <Text style={styles.avatarText}>{'Информация\n пользователя'}</Text>
+            <View style={{flex: 1}}>
+            <Image source={require('../../images/logo2.png')} style={styles.logo}  />
+                <View style={styles.avatar}>
+                    <Image height={100} width={100} source={require('../../images/profile.png')} />
+                    <Text style={styles.avatarText}>{'Информация\n пользователя'}</Text>
+                </View>
+            </View>
+            <View style={{flex: 3}}>
+                <MenuItem>Показатели здоровья</MenuItem>
+                <MenuItem>Лекарства</MenuItem>
+                <MenuItem>Процедуры и упражнения</MenuItem>
+                <MenuItem>Диета</MenuItem>
+                <MenuItem>Быстрые вызовы</MenuItem>
             </View>
         </LinearGradient>
     );
@@ -45,7 +56,14 @@ const styles = StyleSheet.create({
     },
     avatarText:{
         textAlign: "center", 
-        fontFamily: 'montserrat',
+        fontFamily: 'lobster',
         fontSize: 16
+    },
+    logo:{
+        width: 200, 
+        height: 100, 
+        left: 30, 
+        bottom: 20, 
+        position: "absolute"
     }
   });
