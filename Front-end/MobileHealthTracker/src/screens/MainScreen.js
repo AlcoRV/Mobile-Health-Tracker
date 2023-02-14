@@ -1,13 +1,33 @@
+import AppLoading from "expo-app-loading";
 import React from "react";
-import { Image, SafeAreaView, StyleSheet, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
+import * as Font from 'expo-font';
+import { LinearGradient } from 'expo-linear-gradient';
+
+const loadFont = () => Font.loadAsync({
+    'montserrat': require('../../assets/fonts/Lobster-Regular.ttf')
+  });
 
 const MainScreen = () => {
+    
+    const [isFontLoaded, setIsFontLoaded] = React.useState(false);
+
+    if (!isFontLoaded){
+        return(
+          <AppLoading startAsync={loadFont} onFinish={() => setIsFontLoaded(true)} onError={console.warn} />
+        );
+      }
+
     return(
-        <SafeAreaView style={styles.container}>
+        <LinearGradient colors={['#C02425', '#F0CB35']}
+        style={styles.container}
+        start={{x: 0, y: 0}}
+        end={{x: 1, y: 1}}>
             <View style={styles.avatar}>
                 <Image height={100} width={100} source={require('../../images/profile.png')} />
+                <Text style={styles.avatarText}>{'Информация\n пользователя'}</Text>
             </View>
-        </SafeAreaView>
+        </LinearGradient>
     );
 }
 
@@ -16,13 +36,16 @@ export default MainScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        height: '100%',
-        width: '100%',
-        //backgroundColor: 'red',
     },
     avatar: {
-        alignItems: "flex-end",
-        paddingRight: 20,
-        paddingTop: 40
+        position: "absolute",
+        right: 20,
+        top: 40,
+        alignItems: "center"
+    },
+    avatarText:{
+        textAlign: "center", 
+        fontFamily: 'montserrat',
+        fontSize: 16
     }
   });
