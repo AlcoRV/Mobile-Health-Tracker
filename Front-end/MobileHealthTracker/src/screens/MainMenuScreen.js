@@ -9,7 +9,7 @@ const loadFonts = () => Font.loadAsync({
     'lobster': require('../../assets/fonts/Lobster-Regular.ttf')
   });
 
-const MainScreen = () => {
+const MainMenuScreen = () => {
     
     const [isFontsLoaded, setIsFontsLoaded] = React.useState(false);
 
@@ -42,7 +42,7 @@ const MainScreen = () => {
     );
 }
 
-export default MainScreen;
+export default MainMenuScreen;
 
 const styles = StyleSheet.create({
     container: {
