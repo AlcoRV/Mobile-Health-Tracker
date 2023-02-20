@@ -7,9 +7,7 @@ import MenuItem from "../components/MenuItem";
 const MedCardScreen = () => {
     return(
         <LinearGradient colors={['#C02425', '#F0CB35']}
-        style={styles.container}
-        start={{x: 0, y: 0}}
-        end={{x: 1, y: 1}}>
+        style={styles.container} >
             <CommonMainBlock flex={2} />
             <View style={{flex: 5}}>
                 <MenuItem>Записаться к врачу</MenuItem>

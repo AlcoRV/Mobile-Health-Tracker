@@ -22,9 +22,7 @@ const MainMenuScreen = () => {
 
     return(
         <LinearGradient colors={['#C02425', '#F0CB35']}
-        style={styles.container}
-        start={{x: 0, y: 0}}
-        end={{x: 1, y: 1}}>
+        style={styles.container} >
             <CommonMainBlock />
             <View style={{flex: 3}}>
                 <MenuItem>Показатели здоровья</MenuItem>

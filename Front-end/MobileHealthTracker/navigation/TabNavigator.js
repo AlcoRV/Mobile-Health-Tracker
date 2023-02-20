@@ -29,14 +29,13 @@ const TabNavigator = () => {
                 },
                 headerShown: false,
                 tabBarStyle: {
-                    backgroundColor: '#535AF5'
+                    backgroundColor: '#535AF5',
+                    display: "flex"
                 },
+                tabBarActiveTintColor: '#F0CB35',
+                tabBarInactiveTintColor: '#F5D34C',
                 title: itemOptions[route.name].title,
-              })} 
-              tabBarOptions={{
-                activeTintColor: '#F0CB35',
-                inactiveTintColor: '#F5D34C',
-              }}>
+              })} >
                 <Tab.Screen name="MainMenu" component={MainMenuScreen} />
                 <Tab.Screen name="MedCard" component={MedCardScreen} />
             </Tab.Navigator>
