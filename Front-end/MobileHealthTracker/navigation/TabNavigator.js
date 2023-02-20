@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import MainMenuScreen from "../src/screens/MainMenuScreen";
-import TestScreen from "../src/screens/TestScreen";
+import MedCardScreen from "../src/screens/MedCardScreen";
 import Ionic from "react-native-vector-icons/Ionicons";
 
 const Tab = createBottomTabNavigator();
@@ -38,7 +38,7 @@ const TabNavigator = () => {
                 inactiveTintColor: '#F5D34C',
               }}>
                 <Tab.Screen name="MainMenu" component={MainMenuScreen} />
-                <Tab.Screen name="MedCard" component={TestScreen} />
+                <Tab.Screen name="MedCard" component={MedCardScreen} />
             </Tab.Navigator>
     );
 };
