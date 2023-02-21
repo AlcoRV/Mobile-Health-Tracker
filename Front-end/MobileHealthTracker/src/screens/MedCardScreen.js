@@ -1,13 +1,12 @@
-import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import CommonMainBlock from "../components/CommonMainBlock";
-import MenuItem from "../components/MenuItem";
+import CommonMainBlock from "../components/MainMenu/CommonMainBlock";
+import MainTemplateBkg from "../components/MainTemplateBkg";
+import MenuItem from "../components/MainMenu/MenuItem";
 
 const MedCardScreen = () => {
     return(
-        <LinearGradient colors={['#C02425', '#F0CB35']}
-        style={styles.container} >
+        <MainTemplateBkg>
             <CommonMainBlock flex={2} />
             <View style={{flex: 5}}>
                 <MenuItem>Записаться к врачу</MenuItem>
@@ -20,7 +19,7 @@ const MedCardScreen = () => {
                     <Text style={{fontWeight: "600"}}>Чат</Text>
                 </View>
             </View>
-        </LinearGradient>
+        </MainTemplateBkg>
     );
 };
 

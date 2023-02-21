@@ -9,10 +9,10 @@ export default function CommonMainBlock(props){
     flex = flex ? flex : 1;
     return(
         <View style={{flex: flex}}>
-            <Image source={require('../../images/logo2.png')} style={styles.logo}  />
+            <Image source={require('../../../images/logo2.png')} style={styles.logo}  />
                 <View style={styles.avatar}>
                     <TouchableOpacity onPress={ () => navigation.navigate('Profile') }>
-                        <Image height={100} width={100} source={require('../../images/profile.png')} />
+                        <Image height={100} width={100} source={require('../../../images/profile.png')} />
                     </TouchableOpacity>
                     <Text style={styles.avatarText}>{'Информация\n пользователя'}</Text>
                 </View>

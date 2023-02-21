@@ -1,6 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
+import AuthorizationScreen from "../src/screens/AuthorizationScreen";
 import MainMenuScreen from "../src/screens/MainMenuScreen";
 import MedCardScreen from "../src/screens/MedCardScreen";
 import ProfileScreen from "../src/screens/ProfileScreen";
@@ -14,7 +15,7 @@ const NavigatorContainer = () => {
             <Stack.Navigator screenOptions={{
                 headerShown: false
             }}>
-                {/*<Stack.Screen name="Test" component={AuthorizationScreen} /> */}
+                {<Stack.Screen name="Test" component={AuthorizationScreen} /> }
                 <Stack.Screen name="Tab" component={TabNavigator} />
                 <Stack.Screen name="MainMenu" component={MainMenuScreen} />
                 <Stack.Screen name="MedCard" component={MedCardScreen} />

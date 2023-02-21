@@ -1,10 +1,10 @@
 import AppLoading from "expo-app-loading";
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import * as Font from 'expo-font';
-import { LinearGradient } from 'expo-linear-gradient';
-import MenuItem from "../components/MenuItem";
-import CommonMainBlock from "../components/CommonMainBlock";
+import MenuItem from "../components/MainMenu/MenuItem";
+import CommonMainBlock from "../components/MainMenu/CommonMainBlock";
+import MainTemplateBkg from "../components/MainTemplateBkg";
 
 const loadFonts = () => Font.loadAsync({
     'lobster': require('../../assets/fonts/Lobster-Regular.ttf')
@@ -21,8 +21,7 @@ const MainMenuScreen = () => {
       }
 
     return(
-        <LinearGradient colors={['#C02425', '#F0CB35']}
-        style={styles.container} >
+        <MainTemplateBkg>
             <CommonMainBlock />
             <View style={{flex: 3}}>
                 <MenuItem>Показатели здоровья</MenuItem>
@@ -31,14 +30,8 @@ const MainMenuScreen = () => {
                 <MenuItem>Диета</MenuItem>
                 <MenuItem>Быстрые вызовы</MenuItem>
             </View>
-        </LinearGradient>
+        </MainTemplateBkg>
     );
 }
 
 export default MainMenuScreen;
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    }
-  });

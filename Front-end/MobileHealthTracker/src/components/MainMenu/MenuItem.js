@@ -4,11 +4,11 @@ import { LinearGradient } from "expo-linear-gradient";
 
 
 
-export default function MenuItem(props){
+export default function MenuItem({children}){
    
     return(
         <LinearGradient style={styles.menuItem} colors={['#1A94D6', '#1CB0FF', '#029EF2']}>
-            <Text style={styles.menuText}>{props.children}</Text>
+            <Text style={styles.menuText}>{children}</Text>
         </LinearGradient>
     );
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, SafeAreaView, Alert, TouchableOpacity, View, ImageBackground } from 'react-native';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading'
-import TextField from '../components/TextField';
+import TextField from '../components/LoginAndSignup/TextField';
 
 const loadFonts = () => Font.loadAsync({
   'lobster': require('../../assets/fonts/Lobster-Regular.ttf')
