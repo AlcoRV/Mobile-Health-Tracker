@@ -3,6 +3,7 @@ import { StyleSheet, Text, SafeAreaView, Alert, TouchableOpacity, View, ImageBac
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading'
 import TextField from '../components/LoginAndSignup/TextField';
+import TouchableText from '../components/TouchableText';
 
 const loadFonts = () => Font.loadAsync({
   'lobster': require('../../assets/fonts/Lobster-Regular.ttf')
@@ -25,6 +26,8 @@ export default function AuthorizationScreen({ it, setIt }) {
                             }  
                           }
 
+  const changeMode = () => { setIsRegister(!isRegister) }
+
   if (!isFontsLoaded){
     return(
       <AppLoading startAsync={loadFonts} onFinish={() => setIsFontsLoaded(true)} onError={console.warn} />
@@ -36,26 +39,32 @@ export default function AuthorizationScreen({ it, setIt }) {
         <Text style={styles.header}>Wellcome!</Text>
         <TextField
           onChangeText={(value) => setLogin(value)}
-          placeholder='Enter your login'
+          placeholder='Введите логин'
         />
         <TextField
           onChangeText={(value) => setPassword(value)}
-          placeholder='Enter your password'
+          placeholder='Введите пароль'
           secureTextEntry={true}
         />
         {
           isRegister ? (
           <TextField
             onChangeText={(value) => setPassword2(value)}
-            placeholder='Enter your password again'
+            placeholder='Введите пароль снова'
             secureTextEntry={true}
           />) : null
         }
         <TouchableOpacity onPress={getAlert}>
           <View style={styles.button}>
-            <Text style={styles.buttonText}> { isRegister ? "Register" : "Authorize" }</Text>
+            <Text style={styles.buttonText}> { isRegister ? "Зарегистрироваться" : "Войти" }</Text>
           </View>
         </TouchableOpacity>
+        <View style={styles.optionals}>
+          <TouchableText onPress={() => { /* ToDo */ }} textStyles={styles.touchableText}>Вспомнить пароль</TouchableText>
+          <TouchableText onPress={() => changeMode} textStyles={styles.touchableText}>
+            { isRegister ? "Авторизироваться" : "Зарегистрироваться" }
+            </TouchableText>
+        </View>
       </ImageBackground>
     </SafeAreaView>
   ); 
@@ -85,5 +94,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  touchableText: {
+    color: 'white',
+    marginVertical: 5,
+    fontWeight: '600'
+  },
+  optionals: {
+    alignItems: 'center'
   }
 });
