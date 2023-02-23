@@ -60,9 +60,9 @@ export default function AuthorizationScreen({ it, setIt }) {
           </View>
         </TouchableOpacity>
         <View style={styles.optionals}>
-          <TouchableText onPress={() => { /* ToDo */ }} textStyles={styles.touchableText}>Вспомнить пароль</TouchableText>
+          { isRegister ? null : <TouchableText onPress={() => { /* ToDo */ }} textStyles={styles.touchableText}>Вспомнить пароль</TouchableText> }
           <TouchableText onPress={() => changeMode} textStyles={styles.touchableText}>
-            { isRegister ? "Авторизироваться" : "Зарегистрироваться" }
+            { isRegister ? "Войти в аккаунт" : "Зарегистрироваться" }
             </TouchableText>
         </View>
       </ImageBackground>
