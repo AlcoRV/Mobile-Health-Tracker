@@ -1,14 +1,18 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 
 
-export default function MenuItem({children}){
+export default function MenuItem({children, onPress}){
    
+    onPress = onPress ? onPress : () => {};
+
     return(
         <LinearGradient style={styles.menuItem} colors={['#1A94D6', '#1CB0FF', '#029EF2']}>
-            <Text style={styles.menuText}>{children}</Text>
+            <TouchableOpacity onPress={ onPress } style={{ flex: 1}}>
+                <Text style={styles.menuText}>{children}</Text>
+            </TouchableOpacity>
         </LinearGradient>
     );
 };
