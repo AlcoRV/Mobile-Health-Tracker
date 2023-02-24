@@ -1,7 +1,8 @@
-import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import InfoLine from "./InfoLine";
+import FormSection from "../FormSection";
+import { InfoLine } from "../InfoLine";
+
 
 function Button(){
     return(
@@ -15,8 +16,7 @@ function Button(){
 
 export default function ProfileForm(){
     return(
-        <LinearGradient style={styles.formInfo} 
-            colors = {['#1A94D6', '#1CB0FF', '#029EF2']}>
+        <FormSection>
                 <View style={{flex: 1, alignItems: "center", padding: 30}}>
                     <View style={styles.profilePhoto}>
                         <Text style={{ alignSelf: "center", fontSize: 22 }}>{"Photo (To Do: Delete later)"}</Text>
@@ -33,17 +33,11 @@ export default function ProfileForm(){
                    
                     <Button />
                 </View>
-        </LinearGradient>
+        </FormSection>
     );
 };
 
 const styles = StyleSheet.create({
-    formInfo: {
-        flex: 10,
-        margin: 20,
-        borderRadius: 30,
-        alignItems: "center"
-    },
     profilePhoto: {
         width: 200, 
         height: 200, 
@@ -59,7 +53,7 @@ const styles = StyleSheet.create({
         flex: 3,
         alignItems: "center",
         justifyContent: "space-between",
-        marginVertical: 20
+        marginVertical: 25
     },
     button: {
         backgroundColor: '#D98211',
