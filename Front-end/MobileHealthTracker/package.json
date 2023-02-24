@@ -19,6 +19,7 @@
     "react": "18.1.0",
     "react-native": "0.70.5",
     "react-native-ionicons": "^4.6.5",
+    "react-native-masked-text": "^1.13.0",
     "react-native-vector-icons": "^9.2.0"
   },
   "devDependencies": {
