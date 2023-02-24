@@ -10,9 +10,9 @@ const HealthScreen = () => {
         <MainTemplateBkg>
             <BackButton/>
             <FormSection>
-                <View style={{flexDirection: "row", margin: 20, backgroundColor: 'red'}}>
-                    <InfoLineParameter paramName='Вес' scaleName='кг.' maxLength={5} />
-                    <InfoLineParameter paramName='Рост' scaleName='м.' maxLength={4} />
+                <View style={{flexDirection: "row", margin: 20}}>
+                    <InfoLineParameter paramName='weight' />
+                    <InfoLineParameter paramName='height' />
                 </View>
                 
             </FormSection>
