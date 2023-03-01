@@ -14,7 +14,11 @@ const HealthScreen = () => {
                     <InfoLineParameter paramName='weight' />
                     <InfoLineParameter paramName='height' />
                 </View>
-                
+                <View style={{alignItems: "center"}}>
+                    <InfoLineParameter style={styles.oneLineParameter} paramName='heartRate' />
+                    <InfoLineParameter style={styles.oneLineParameter} paramName='bloodPressure' />
+
+                </View>
             </FormSection>
         </MainTemplateBkg>
     );
@@ -23,5 +27,7 @@ const HealthScreen = () => {
 export default HealthScreen;
 
 const styles = StyleSheet.create({
-    
+    oneLineParameter:{
+        marginVertical: 20
+    }
 });

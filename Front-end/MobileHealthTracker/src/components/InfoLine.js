@@ -21,15 +21,30 @@ const parameters = {
         title: 'Вес',
         scale: 'кг.',
         mask: '99,99'
+    },
+    heartRate: {
+        title: 'Пульс',
+        scale: 'уд./мин.',
+        mask: '99'
+    },
+    bloodPressure: {
+        title: 'Давление',
+        scale: 'мм. р. с.',
+        mask: '999/99'
+    },
+    sleep: {
+        title: 'Сон',
+        scale: 'мм. р. с.',
+        mask: '999/99'
     }
 };
 
-function InfoLineParameter({paramName}){
+function InfoLineParameter({paramName, style}){
 
     const [parameter, setParameter] = useState('');
 
     return(
-        <View style={[styles.container, {width: '40%'}]}>
+        <View style={[styles.container, {width: '45%'}, style]}>
             <Text ellipsizeMode="tail" style={[styles.parameterText, {fontWeight: "600"} ]}>{`${parameters[paramName].title}:`}</Text>
             <TextInputMask 
                 type="custom" 
