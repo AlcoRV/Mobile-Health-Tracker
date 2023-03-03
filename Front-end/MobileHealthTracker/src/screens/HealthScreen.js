@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import BackButton from "../components/BackButton";
 import FormSection from "../components/FormSection";
 import { InfoLineParameter } from "../components/InfoLine";
 import MainTemplateBkg from "../components/MainTemplateBkg";
@@ -10,7 +9,6 @@ const [changeDate, setChangeDate] = useState(new Date().toLocaleDateString('ru-R
 
     return(
         <MainTemplateBkg>
-            <BackButton/>
             <FormSection style={{justifyContent: "center"}}>
                 <View style={{flexDirection: "row", margin: 20}}>
                     <InfoLineParameter paramName='weight' />
