@@ -2,9 +2,9 @@ import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { StyleSheet } from "react-native";
 
-export default function FormSection({children}){
+export default function FormSection({children, style}){
     return(
-        <LinearGradient style={styles.formSection} 
+        <LinearGradient style={[styles.formSection, style]} 
             colors = {['#1A94D6', '#1CB0FF', '#029EF2']}>
                 {children}
         </LinearGradient>

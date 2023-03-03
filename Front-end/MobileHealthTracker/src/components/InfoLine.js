@@ -13,29 +13,34 @@ function InfoLine({paramName, paramValue}){
 
 const parameters = {
     height: {
-        title: 'Рост',
+        title: 'Рост:',
         scale: 'м.',
         mask: '9,99'
     },
     weight: {
-        title: 'Вес',
+        title: 'Вес:',
         scale: 'кг.',
         mask: '99,99'
     },
     heartRate: {
-        title: 'Пульс',
+        title: 'Пульс:',
         scale: 'уд./мин.',
         mask: '99'
     },
     bloodPressure: {
-        title: 'Давление',
+        title: 'Давление:',
         scale: 'мм. р. с.',
         mask: '999/99'
     },
-    sleep: {
-        title: 'Сон',
-        scale: 'мм. р. с.',
-        mask: '999/99'
+    sleepH: {
+        title: 'Сон:',
+        scale: 'ч.',
+        mask: '99'
+    },
+    sleepM: {
+        title: '',
+        scale: 'мин.',
+        mask: '99'
     }
 };
 
@@ -45,7 +50,7 @@ function InfoLineParameter({paramName, style}){
 
     return(
         <View style={[styles.container, {width: '45%'}, style]}>
-            <Text ellipsizeMode="tail" style={[styles.parameterText, {fontWeight: "600"} ]}>{`${parameters[paramName].title}:`}</Text>
+            <Text ellipsizeMode="tail" style={[styles.parameterText, {fontWeight: "600"} ]}>{parameters[paramName].title}</Text>
             <TextInputMask 
                 type="custom" 
                 style={styles.textInput} 
