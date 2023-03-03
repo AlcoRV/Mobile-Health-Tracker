@@ -5,6 +5,7 @@ import AuthorizationScreen from "../src/screens/AuthorizationScreen";
 import HealthScreen from "../src/screens/HealthScreen";
 import MainMenuScreen from "../src/screens/MainMenuScreen";
 import MedCardScreen from "../src/screens/MedCardScreen";
+import MedicinesScreen from "../src/screens/MedicinesScreen";
 import ProfileScreen from "../src/screens/ProfileScreen";
 import TabNavigator from "./TabNavigator";
 
@@ -22,6 +23,7 @@ const NavigatorContainer = () => {
                 <Stack.Screen name="MedCard" component={MedCardScreen} />
                 <Stack.Screen name="Profile" component={ProfileScreen} />
                 <Stack.Screen name="Health" component={HealthScreen} />
+                <Stack.Screen name="Medicines" component={MedicinesScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );

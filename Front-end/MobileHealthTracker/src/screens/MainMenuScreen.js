@@ -27,7 +27,7 @@ const MainMenuScreen = () => {
             <CommonMainBlock />
             <View style={{flex: 3}}>
                 <MenuItem onPress={() => navigation.navigate("Health")}>Показатели здоровья</MenuItem>
-                <MenuItem>Лекарства</MenuItem>
+                <MenuItem onPress={() => navigation.navigate("Medicines")}>Лекарства</MenuItem>
                 <MenuItem>Процедуры и упражнения</MenuItem>
                 <MenuItem>Диета</MenuItem>
                 <MenuItem>Быстрые вызовы</MenuItem>
