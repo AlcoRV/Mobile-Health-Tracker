@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 import FormSection from "../components/FormSection";
 import MenuItem from "../components/MainMenu/MenuItem";
 import MainTemplateBkg from "../components/MainTemplateBkg";
@@ -44,6 +44,30 @@ const testMedicines = [
     {
         name: 'Лекарство10',
         description: 'Принимай столько и по столько'
+    },
+    {
+        name: 'Лекарство11',
+        description: 'Принимай столько и по столько'
+    },
+    {
+        name: 'Лекарство12',
+        description: 'Принимай столько и по столько'
+    },
+    {
+        name: 'Лекарство13',
+        description: 'Принимай столько и по столько'
+    },
+    {
+        name: 'Лекарство14',
+        description: 'Принимай столько и по столько'
+    },
+    {
+        name: 'Лекарство15',
+        description: 'Принимай столько и по столько'
+    },
+    {
+        name: 'Лекарство16',
+        description: 'Принимай столько и по столько'
     }
 ]
 
@@ -53,11 +77,9 @@ const MedicinesScreen = () => {
     return(
         <MainTemplateBkg>
             <FormSection>
-                {
-                    listMedicines.map(item => (
-                        <MenuItem style={styles.item}>{item.name}</MenuItem>
-                    ))
-                }
+                <FlatList style={styles.list} data={listMedicines} renderItem={({item}) => (
+                    <MenuItem style={styles.item} colors={['#9C5800', '#E88A10']} >{item.name}</MenuItem>
+                )}  />
             </FormSection>
         </MainTemplateBkg>
     );
@@ -66,7 +88,8 @@ const MedicinesScreen = () => {
 export default MedicinesScreen;
 
 const styles = StyleSheet.create({
-    item: {
-        height: 100
+    list: {
+        width: '90%', 
+        margin: '5%'
     }
 });
