@@ -4,7 +4,7 @@ import BackButton from "../components/BackButton";
 import FormSection from "../components/FormSection";
 import MenuItem from "../components/MainMenu/MenuItem";
 import MainTemplateBkg from "../components/MainTemplateBkg";
-import RNDateTimePicker, { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
+import RNDateTimePicker from '@react-native-community/datetimepicker';
 
 const testMedicines = [
     {
@@ -145,19 +145,26 @@ const ItemDescription = ({visible, medicine}) => {
     const onChange = (event, selectedDate) => {
         const currentTime = selectedDate || time;
         setTime(currentTime);
-        setShowTimePicker(false);
 
-        if(event.type != 'dismissed'){ activeItem.takingTimes.push(currentTime); }
+        if(event.type != 'dismissed'){ 
+            activeItem.takingTimes.push(currentTime); 
+            if(activeItem.takingTimes.length === activeItem.needToTake) { setShowTimePicker(false); }
+        }
     }
 
+    const fillListTime = () => { 
+        activeItem.takingTimes = [];
+
+        setShowTimePicker(true); 
+    }
 
 
     if(!activeItem) {
         return(null);
     }
-
+    
     return(
-        <Modal visible={visible}>
+        <Modal visible={visible} >
             <MainTemplateBkg>
                 <BackButton onPress={() => {setActiveItem(null)}}/>
                 <Text style={styles.modalHeader}>{activeItem.name}</Text>
@@ -165,16 +172,16 @@ const ItemDescription = ({visible, medicine}) => {
                 <Text style={styles.modalPersonalRecipe}>{`Личные рекомендации:\n${activeItem.recipe}`}</Text>
                 <View style={{flexDirection: "row", marginHorizontal: 20, marginBottom: 20}}>
                     <View flex={3}>
-                    <Text>{`Принято: ${activeItem.taked}/${activeItem.needToTake}`}</Text>
+                    <Text>{`Принято: ${activeItem.takingTimes.length}/${activeItem.needToTake}`}</Text>
                     {
                         activeItem.takingTimes.map((item) => (
-                            <Text >{item + ''}</Text>
+                            <Text >{item.toLocaleTimeString().slice(0,-3)}</Text>
                         ))
                     }
                     { showTimePicker && <RNDateTimePicker  display="default" mode='time' value={time} onChange={onChange}/> }
                     </View>
                     <View style={styles.modalChangeTimesButton}>
-                        <TouchableOpacity onPress={() => setShowTimePicker(true)}>
+                        <TouchableOpacity onPress={() => fillListTime()}>
                             <Text style={{textAlign: "center", textAlignVertical: "center"}}>Изменить время приёма</Text>
                         </TouchableOpacity>
                     </View>
