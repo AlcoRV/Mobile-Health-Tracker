@@ -30,7 +30,7 @@ const MainMenuScreen = () => {
                 <MenuItem onPress={() => navigation.navigate("Medicines")}>Лекарства</MenuItem>
                 <MenuItem onPress={() => navigation.navigate("Exercises")}>Процедуры и упражнения</MenuItem>
                 <MenuItem onPress={() => navigation.navigate("Diet")}>Диета</MenuItem>
-                <MenuItem>Быстрые вызовы</MenuItem>
+                <MenuItem onPress={() => navigation.navigate("QuickCalls")}>Быстрые вызовы</MenuItem>
             </View>
         </MainTemplateBkg>
     );

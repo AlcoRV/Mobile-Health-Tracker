@@ -9,6 +9,7 @@ import MainMenuScreen from "../src/screens/MainMenuScreen";
 import MedCardScreen from "../src/screens/MedCardScreen";
 import MedicinesScreen from "../src/screens/MedicinesScreen";
 import ProfileScreen from "../src/screens/ProfileScreen";
+import QuickCallsScreen from "../src/screens/QuickCallsScreen";
 import TabNavigator from "./TabNavigator";
 
 const Stack = createNativeStackNavigator();
@@ -28,6 +29,7 @@ const NavigatorContainer = () => {
                 <Stack.Screen name="Medicines" component={MedicinesScreen} />
                 <Stack.Screen name="Exercises" component={ExercisesScreen} />
                 <Stack.Screen name="Diet" component={DietScreen} />
+                <Stack.Screen name="QuickCalls" component={QuickCallsScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );
