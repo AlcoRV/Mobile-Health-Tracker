@@ -57,7 +57,7 @@ const ItemDescription = ({visible, medicine}) => {
     }
     
     return(
-        <Modal visible={visible} >
+        <Modal visible={visible} style={{height: '50%'}}>
             <MainTemplateBkg>
                 <BackButton onPress={() => {setActiveItem(null)}}/>
                 <Text style={styles.modalHeader}>{activeItem.name}</Text>
@@ -85,14 +85,14 @@ const ItemDescription = ({visible, medicine}) => {
 };
 
 const ExercisesScreen = () => {
-    const [listMedicines, setListMedicines] = useState(testMedicines);
+    const [listExercises, setListExercises] = useState(testMedicines);
     const [activeItem, setActiveItem] = useState(null);
 
     return(
         <MainTemplateBkg>
             <ItemDescription visible={true} medicine={{activeItem, setActiveItem}} />
             <FormSection>
-                <FlatList style={styles.list} data={listMedicines} renderItem={({item}) => (
+                <FlatList style={styles.list} data={listExercises} renderItem={({item}) => (
                     <MenuItem 
                     colors={['#9C5800', '#E88A10']} 
                     onPress={() => {
