@@ -201,7 +201,6 @@ const MedicinesScreen = () => {
             <FormSection>
                 <FlatList style={styles.list} data={listMedicines} renderItem={({item}) => (
                     <MenuItem 
-                    style={styles.item} 
                     colors={['#9C5800', '#E88A10']} 
                     onPress={() => {
                         setActiveItem(item)
