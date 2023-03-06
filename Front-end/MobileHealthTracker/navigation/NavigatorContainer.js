@@ -2,6 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import AuthorizationScreen from "../src/screens/AuthorizationScreen";
+import ExercisesScreen from "../src/screens/ExercisesScreen";
 import HealthScreen from "../src/screens/HealthScreen";
 import MainMenuScreen from "../src/screens/MainMenuScreen";
 import MedCardScreen from "../src/screens/MedCardScreen";
@@ -24,6 +25,7 @@ const NavigatorContainer = () => {
                 <Stack.Screen name="Profile" component={ProfileScreen} />
                 <Stack.Screen name="Health" component={HealthScreen} />
                 <Stack.Screen name="Medicines" component={MedicinesScreen} />
+                <Stack.Screen name="Exercises" component={ExercisesScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );

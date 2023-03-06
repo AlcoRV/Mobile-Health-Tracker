@@ -28,7 +28,7 @@ const MainMenuScreen = () => {
             <View style={{flex: 3}}>
                 <MenuItem onPress={() => navigation.navigate("Health")}>Показатели здоровья</MenuItem>
                 <MenuItem onPress={() => navigation.navigate("Medicines")}>Лекарства</MenuItem>
-                <MenuItem>Процедуры и упражнения</MenuItem>
+                <MenuItem onPress={() => navigation.navigate("Exercises")}>Процедуры и упражнения</MenuItem>
                 <MenuItem>Диета</MenuItem>
                 <MenuItem>Быстрые вызовы</MenuItem>
             </View>
