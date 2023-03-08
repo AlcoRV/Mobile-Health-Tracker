@@ -1,6 +1,6 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
-import { FlatList, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { FlatList, Image, Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import FormSection from "../components/FormSection";
 import MainTemplateBkg from "../components/MainTemplateBkg";
 import 'intl';
@@ -51,15 +51,37 @@ const AppointmentItem = ({item}) => {
     );
 };
 
+const AddAppontmentForm = ({listItems, visible}) => {
+    const {appointments, setAppointments} = listItems;
+    const {addFormVisible, setAddFormVisible} = visible;
+
+    return(
+        <Modal visible={addFormVisible}>
+            <MainTemplateBkg>
+                <FormSection buttonOnPress={() => setAddFormVisible(false)}>
+
+                </FormSection>
+            </MainTemplateBkg>
+        </Modal>
+    );
+};
+
 const DoctorsAppointmentsScreen = () => {
     const [appointments, setAppointments] = useState(testAppointments);
+    const [addFormVisible, setAddFormVisible] = useState(false);
 
     return(
         <MainTemplateBkg>
             <FormSection>
+                <AddAppontmentForm visible={{addFormVisible, setAddFormVisible}} listItems={{appointments, setAppointments}} />
                 <FlatList style={styles.list} data={appointments} renderItem={({item}) => (
                         <AppointmentItem item={item} />
                     )}  />
+                    <View style={{}}>
+                        <TouchableOpacity onPress={ () => setAddFormVisible(true) }>
+                            <Image source={require('../../images/addButton.png')} style={styles.addButton}/>
+                        </TouchableOpacity>
+                    </View>
             </FormSection>
         </MainTemplateBkg>
     );
@@ -83,5 +105,10 @@ const styles = StyleSheet.create({
     itemSpecialization: {
         fontWeight: "600",
         fontSize: 24
+    },
+    addButton: {
+        width: 100,
+        height: 100,
+        marginBottom: 20
     }
 });
