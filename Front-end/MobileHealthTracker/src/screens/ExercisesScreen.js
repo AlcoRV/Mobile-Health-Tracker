@@ -57,7 +57,7 @@ const ItemDescription = ({visible, medicine}) => {
     }
     
     return(
-        <Modal visible={visible} style={{height: '50%'}}>
+        <Modal visible={visible}>
             <MainTemplateBkg>
                 <BackButton onPress={() => {setActiveItem(null)}}/>
                 <Text style={styles.modalHeader}>{activeItem.name}</Text>
