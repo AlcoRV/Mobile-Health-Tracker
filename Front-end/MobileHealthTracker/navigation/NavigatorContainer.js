@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import AuthorizationScreen from "../src/screens/AuthorizationScreen";
 import DietScreen from "../src/screens/DietScreen";
+import DoctorsAppointmentsScreen from "../src/screens/DoctorsAppointmentsScreen";
 import ExercisesScreen from "../src/screens/ExercisesScreen";
 import HealthScreen from "../src/screens/HealthScreen";
 import MainMenuScreen from "../src/screens/MainMenuScreen";
@@ -30,6 +31,7 @@ const NavigatorContainer = () => {
                 <Stack.Screen name="Exercises" component={ExercisesScreen} />
                 <Stack.Screen name="Diet" component={DietScreen} />
                 <Stack.Screen name="QuickCalls" component={QuickCallsScreen} />
+                <Stack.Screen name="DoctorsAppointments" component={DoctorsAppointmentsScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );

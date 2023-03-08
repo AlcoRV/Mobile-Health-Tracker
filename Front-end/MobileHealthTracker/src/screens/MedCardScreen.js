@@ -3,13 +3,16 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import CommonMainBlock from "../components/MainMenu/CommonMainBlock";
 import MainTemplateBkg from "../components/MainTemplateBkg";
 import MenuItem from "../components/MainMenu/MenuItem";
+import { useNavigation } from "@react-navigation/native";
 
 const MedCardScreen = () => {
+    const navigation = useNavigation();
+
     return(
         <MainTemplateBkg>
             <CommonMainBlock flex={2} />
             <View style={{flex: 5}}>
-                <MenuItem>Записаться к врачу</MenuItem>
+                <MenuItem onPress={() => navigation.navigate("DoctorsAppointments")}>Записи к врачу</MenuItem>
                 <MenuItem>Найти врача</MenuItem>
                 <MenuItem>Посмотреть мед. карточку</MenuItem>
             </View>
