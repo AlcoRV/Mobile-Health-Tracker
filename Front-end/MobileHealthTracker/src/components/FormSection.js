@@ -3,10 +3,10 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import BackButton from "./BackButton";
 
-export default function FormSection({children, style}){
+export default function FormSection({children, style, buttonOnPress}){
     return(
         <View flex={1}>
-            <BackButton/>
+            <BackButton onPress={buttonOnPress}/>
             <LinearGradient style={[styles.formSection, style]} 
             colors = {['#1A94D6', '#1CB0FF', '#029EF2']}>
                 {children}
