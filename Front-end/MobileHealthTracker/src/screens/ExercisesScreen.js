@@ -6,7 +6,7 @@ import MenuItem from "../components/MainMenu/MenuItem";
 import MainTemplateBkg from "../components/MainTemplateBkg";
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 
-const testMedicines = [
+const testExercises = [
     {
         name: 'Упражнение1',
         purpose: 'Нужно для такого-то эффекта',
@@ -30,8 +30,8 @@ const testMedicines = [
     }
 ]
 
-const ItemDescription = ({visible, medicine}) => {
-    const {activeItem, setActiveItem} = medicine;
+const ItemDescription = ({visible, exercise}) => {
+    const {activeItem, setActiveItem} = exercise;
     const [time, setTime] = useState(new Date());
     const [showTimePicker, setShowTimePicker] = useState(false);
 
@@ -85,12 +85,12 @@ const ItemDescription = ({visible, medicine}) => {
 };
 
 const ExercisesScreen = () => {
-    const [listExercises, setListExercises] = useState(testMedicines);
+    const [listExercises, setListExercises] = useState(testExercises);
     const [activeItem, setActiveItem] = useState(null);
 
     return(
         <MainTemplateBkg>
-            <ItemDescription visible={true} medicine={{activeItem, setActiveItem}} />
+            <ItemDescription visible={true} exercise={{activeItem, setActiveItem}} />
             <FormSection>
                 <FlatList style={styles.list} data={listExercises} renderItem={({item}) => (
                     <MenuItem 
