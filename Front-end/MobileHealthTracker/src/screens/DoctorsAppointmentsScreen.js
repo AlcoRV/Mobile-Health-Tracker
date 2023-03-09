@@ -5,16 +5,24 @@ import FormSection from "../components/FormSection";
 import MainTemplateBkg from "../components/MainTemplateBkg";
 import 'intl';
 import 'intl/locale-data/jsonp/ru';
+import Doctor from "../../models/Doctor";
+import DocktorsAppointment from "../../models/DoctorsAppointment";
 
 const testAppointments = [
     {
-        specialization: 'Терапевт',
-        name: "Петров П.П.",
+        doctor: {
+            specialization: 'Терапевт',
+            name: "Петров П.П.",
+            clinic: "Клиника №1"
+        },
         date: new Date()
     },
     {
-        specialization: 'Хирург',
-        name: "Филиппов Ф.Ф.",
+        doctor: {
+            specialization: 'Хирург',
+            name: "Филиппов Ф.Ф.",
+            clinic: "Клиника №1"
+        },
         date: new Date()
     }
 ]
@@ -38,7 +46,8 @@ const getFullFormatDate = date => {
 }
 
 const AppointmentItem = ({item}) => {
-    const {specialization, name, date} = item;
+    const {doctor, date} = item;
+    const {name, specialization} = doctor;
 
     return(
         <LinearGradient style={styles.item} colors={['#9C5800', '#E88A10']}>
@@ -51,34 +60,38 @@ const AppointmentItem = ({item}) => {
     );
 };
 
-const AddAppontmentForm = ({listItems, visible}) => {
-    const {appointments, setAppointments} = listItems;
-    const {addFormVisible, setAddFormVisible} = visible;
-
-    return(
-        <Modal visible={addFormVisible}>
-            <MainTemplateBkg>
-                <FormSection buttonOnPress={() => setAddFormVisible(false)}>
-
-                </FormSection>
-            </MainTemplateBkg>
-        </Modal>
-    );
-};
-
 const DoctorsAppointmentsScreen = () => {
     const [appointments, setAppointments] = useState(testAppointments);
     const [addFormVisible, setAddFormVisible] = useState(false);
+    const [activeItem, setActiveItem] = useState(null);
+
+    const AppointmentFormItem = () => {    
+
+        const visible = (Boolean)(activeItem);
+        console.log(visible);
+
+        return(
+            <Modal visible={visible}>
+                <MainTemplateBkg>
+                    <FormSection buttonOnPress={() => setActiveItem(null)}>
+    
+                    </FormSection>
+                </MainTemplateBkg>
+            </Modal>
+        );
+    };
 
     return(
         <MainTemplateBkg>
             <FormSection>
-                <AddAppontmentForm visible={{addFormVisible, setAddFormVisible}} listItems={{appointments, setAppointments}} />
+                <AppointmentFormItem />
                 <FlatList style={styles.list} data={appointments} renderItem={({item}) => (
-                        <AppointmentItem item={item} />
+                        <TouchableOpacity onPress={ () => setActiveItem(item) }>
+                            <AppointmentItem item={item} />
+                        </TouchableOpacity>
                     )}  />
                     <View style={{}}>
-                        <TouchableOpacity onPress={ () => setAddFormVisible(true) }>
+                        <TouchableOpacity onPress={ () => setActiveItem(new DocktorsAppointment()) }>
                             <Image source={require('../../images/addButton.png')} style={styles.addButton}/>
                         </TouchableOpacity>
                     </View>
