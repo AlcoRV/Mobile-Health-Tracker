@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 import { TextInputMask } from 'react-native-masked-text';
 
 function InfoLine({paramName, paramValue}){
@@ -44,13 +44,27 @@ const parameters = {
     }
 };
 
-function InfoLineParameter({paramName, style}){
+function InfoLineParameter({paramName, paramValue, style}){
+
+    const [parameter, setParameter] = useState(paramValue);
+    const editable = !(Boolean)(paramValue);
+
+    return(
+        <View style={[styles.container, {alignContent: "flex-start"}, style]}>
+            <Text ellipsizeMode="tail" style={[styles.parameterText, {fontWeight: "600"} ]}>{`${paramName}:`}</Text>
+            <TextInput value={parameter} editable={editable} multiline={true} 
+            style={[styles.parameterText, {maxWidth: '60%', borderBottomWidth: 2}]} onChangeText={(value) => setParameter(value)} />
+        </View>
+    );
+};
+
+function InfoLineParameterWithMask({paramName, style}){
 
     const [parameter, setParameter] = useState('');
 
     return(
         <View style={[styles.container, {width: '45%'}, style]}>
-            <Text ellipsizeMode="tail" style={[styles.parameterText, {fontWeight: "600"} ]}>{parameters[paramName].title}</Text>
+            <Text ellipsizeMode="tail" style={[styles.parameterTextMask, {fontWeight: "600"} ]}>{parameters[paramName].title}</Text>
             <TextInputMask 
                 type="custom" 
                 style={styles.textInput} 
@@ -65,7 +79,7 @@ function InfoLineParameter({paramName, style}){
     );
 };
 
-export {InfoLine, InfoLineParameter};
+export {InfoLine, InfoLineParameter, InfoLineParameterWithMask};
 
 const styles = StyleSheet.create({
     container: {
@@ -81,6 +95,11 @@ const styles = StyleSheet.create({
     },
     parameterText: {
         fontSize: 20,
+        margin: 10,
+        color: 'black'
+    },
+    parameterTextMask: {
+        fontSize: 20
     },
     textInput: {
         borderBottomWidth: 1,
