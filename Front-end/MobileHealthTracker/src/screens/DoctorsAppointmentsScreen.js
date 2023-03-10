@@ -5,8 +5,9 @@ import FormSection from "../components/FormSection";
 import MainTemplateBkg from "../components/MainTemplateBkg";
 import 'intl';
 import 'intl/locale-data/jsonp/ru';
-import Doctor from "../../models/Doctor";
 import DocktorsAppointment from "../../models/DoctorsAppointment";
+import { InfoLineParameter } from "../components/InfoLine";
+import MenuItem from "../components/MainMenu/MenuItem";
 
 const testAppointments = [
     {
@@ -45,13 +46,14 @@ const getFullFormatDate = date => {
     return date.toLocaleString('ru-RU', options);
 }
 
-const AppointmentItem = ({item}) => {
+const AppointmentItem = ({item, onPress}) => {
     const {doctor, date} = item;
     const {name, specialization} = doctor;
+    onPress = onPress || (() => {});
 
     return(
         <LinearGradient style={styles.item} colors={['#9C5800', '#E88A10']}>
-            <TouchableOpacity onPress={ () => {} } style={{ flex: 1}}>
+            <TouchableOpacity onPress={ () => onPress() } style={{ flex: 1}}>
                 <Text style={styles.itemSpecialization}>{specialization}</Text>
                 <Text style={styles.itemOptions}>{name}</Text>
                 <Text style={styles.itemOptions}>{getFullFormatDate(date)}</Text>
@@ -62,19 +64,22 @@ const AppointmentItem = ({item}) => {
 
 const DoctorsAppointmentsScreen = () => {
     const [appointments, setAppointments] = useState(testAppointments);
-    const [addFormVisible, setAddFormVisible] = useState(false);
     const [activeItem, setActiveItem] = useState(null);
 
     const AppointmentFormItem = () => {    
 
         const visible = (Boolean)(activeItem);
-        console.log(visible);
+        console.log(activeItem);
 
         return(
             <Modal visible={visible}>
                 <MainTemplateBkg>
-                    <FormSection buttonOnPress={() => setActiveItem(null)}>
-    
+                    <FormSection buttonOnPress={() => setActiveItem(null)} style={{ justifyContent: "center" }}>
+                        <InfoLineParameter paramName={"Клиника"} paramValue={activeItem?.doctor?.clinic} />
+                        <InfoLineParameter paramName={"Специализация"} paramValue={activeItem?.doctor?.specialization} />
+                        <InfoLineParameter paramName={"Врач"} paramValue={activeItem?.doctor?.name} />
+                        {!(activeItem?.doctor?.clinic) && <MenuItem style={{ margin: 20, flex: 0, height: 60}} colors={['#9C5800', '#E88A10']} >Выбрать дату и время</MenuItem> }
+
                     </FormSection>
                 </MainTemplateBkg>
             </Modal>
@@ -86,9 +91,7 @@ const DoctorsAppointmentsScreen = () => {
             <FormSection>
                 <AppointmentFormItem />
                 <FlatList style={styles.list} data={appointments} renderItem={({item}) => (
-                        <TouchableOpacity onPress={ () => setActiveItem(item) }>
-                            <AppointmentItem item={item} />
-                        </TouchableOpacity>
+                            <AppointmentItem item={item} onPress={() => setActiveItem(item)} />
                     )}  />
                     <View style={{}}>
                         <TouchableOpacity onPress={ () => setActiveItem(new DocktorsAppointment()) }>
