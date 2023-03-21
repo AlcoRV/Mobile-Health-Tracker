@@ -6,8 +6,9 @@ import MainTemplateBkg from "../components/MainTemplateBkg";
 import 'intl';
 import 'intl/locale-data/jsonp/ru';
 import DocktorsAppointment from "../../models/DoctorsAppointment";
-import { InfoLineParameter } from "../components/InfoLine";
+import { InfoLineParameterList } from "../components/InfoLine";
 import MenuItem from "../components/MainMenu/MenuItem";
+//import ComboBox from 'react-native-combobox';
 
 const testAppointments = [
     {
@@ -67,7 +68,6 @@ const DoctorsAppointmentsScreen = () => {
     const [activeItem, setActiveItem] = useState(null);
 
     const AppointmentFormItem = () => {    
-
         const visible = (Boolean)(activeItem);
         console.log(activeItem);
 
@@ -75,11 +75,10 @@ const DoctorsAppointmentsScreen = () => {
             <Modal visible={visible}>
                 <MainTemplateBkg>
                     <FormSection buttonOnPress={() => setActiveItem(null)} style={{ justifyContent: "center" }}>
-                        <InfoLineParameter paramName={"Клиника"} paramValue={activeItem?.doctor?.clinic} />
-                        <InfoLineParameter paramName={"Специализация"} paramValue={activeItem?.doctor?.specialization} />
-                        <InfoLineParameter paramName={"Врач"} paramValue={activeItem?.doctor?.name} />
+                        <InfoLineParameterList paramName={"Клиника"} paramValue={activeItem?.doctor?.clinic} />
+                        <InfoLineParameterList paramName={"Специализация"} paramValue={activeItem?.doctor?.specialization} />
+                        <InfoLineParameterList paramName={"Врач"} paramValue={activeItem?.doctor?.name} />
                         {!(activeItem?.doctor?.clinic) && <MenuItem style={{ margin: 20, flex: 0, height: 60}} colors={['#9C5800', '#E88A10']} >Выбрать дату и время</MenuItem> }
-
                     </FormSection>
                 </MainTemplateBkg>
             </Modal>

@@ -44,7 +44,7 @@ const parameters = {
     }
 };
 
-function InfoLineParameter({paramName, paramValue, style}){
+function InfoLineParameterList({paramName, paramValue, style}){
 
     const [parameter, setParameter] = useState(paramValue);
     const editable = !(Boolean)(paramValue);
@@ -79,7 +79,7 @@ function InfoLineParameterWithMask({paramName, style}){
     );
 };
 
-export {InfoLine, InfoLineParameter, InfoLineParameterWithMask};
+export {InfoLine, InfoLineParameterList, InfoLineParameterWithMask};
 
 const styles = StyleSheet.create({
     container: {
