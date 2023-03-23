@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { TextInputMask } from 'react-native-masked-text';
+import { SelectList } from 'react-native-dropdown-select-list'
 
 function InfoLine({paramName, paramValue}){
     return(
@@ -44,16 +45,13 @@ const parameters = {
     }
 };
 
-function InfoLineParameterList({paramName, paramValue, style}){
-
-    const [parameter, setParameter] = useState(paramValue);
-    const editable = !(Boolean)(paramValue);
+function InfoLineParameterList({paramName, paramValue, setParamValue, style, values, editable}){
 
     return(
         <View style={[styles.container, {alignContent: "flex-start"}, style]}>
             <Text ellipsizeMode="tail" style={[styles.parameterText, {fontWeight: "600"} ]}>{`${paramName}:`}</Text>
-            <TextInput value={parameter} editable={editable} multiline={true} 
-            style={[styles.parameterText, {maxWidth: '60%', borderBottomWidth: 2}]} onChangeText={(value) => setParameter(value)} />
+            { editable && <SelectList data={values} setSelected={setParamValue} save="value" defaultOption={{key: 1, value: paramValue}} />
+                || <Text ellipsizeMode="tail" style={[styles.parameterText ]}>{`${paramValue}`}</Text> }
         </View>
     );
 };
