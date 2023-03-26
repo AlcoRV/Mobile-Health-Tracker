@@ -17,7 +17,7 @@ const testAppointments = [
             name: "Петров П.П.",
             clinic: "Клиника №1"
         },
-        date: new Date()
+        date: new Date('2023-02-15T14:30:00.000Z')
     },
     {
         doctor: {
@@ -25,7 +25,7 @@ const testAppointments = [
             name: "Филиппов Ф.Ф.",
             clinic: "Клиника №1"
         },
-        date: new Date()
+        date: new Date('2023-02-20T14:50:00.000Z')
     }
 ]
 
@@ -34,7 +34,7 @@ const testValues = {
     specializations: ['Терапевт', 'Хирург', 'Стоматолог'],
     clinics: ["Клиника №1", "Клиника №2", "Клиника №3"],
     dates: [new Date('2023-03-18'), new Date('2023-03-17'), new Date('2022-03-19')],
-    times: [new Date("0-0-0T10:30"), new Date("0-0-0T11:30:00.000Z"), new Date(10*40)]
+    times: [new Date("0001-01-01T10:30:00.000Z"), new Date("0001-01-01T11:30:00.000Z"), new Date("0001-01-01T13:30:00.000Z")]
 }
 
 const getFullFormatDate = date => {
@@ -76,6 +76,13 @@ const DoctorsAppointmentsScreen = () => {
     const [activeItem, setActiveItem] = useState(null);
     const [editable, setEditable] = useState(false);
 
+    const addAppointment = appointment => {
+        console.log(appointment);
+        if(appointment.isValid()){
+            appointments.push(appointment);
+        }
+    }
+
     const AppointmentFormItem = () => {    
         const visible = (Boolean)(activeItem);
         const [clinic, setClinic] = useState(activeItem?.doctor?.clinic);
@@ -98,6 +105,21 @@ const DoctorsAppointmentsScreen = () => {
                             paramName={"День"} paramValue={date} setParamValue={setDate} values={testValues.dates.map(d => new DateHelper().getDate(d))} editable={editable} />
                         <InfoLineParameterList 
                             paramName={"Время"} paramValue={time} setParamValue={setTime} values={testValues.times.map(t => new DateHelper().getTime(t))} editable={editable} />
+                        { editable && <MenuItem 
+                            colors={['#9C5800', '#E88A10']} 
+                            onPress={() => {
+                                addAppointment(new DocktorsAppointment({
+                                    doctor: {
+                                        clinic: clinic,
+                                        specialization: specialization,
+                                        name: doctor
+                                    },
+                                    date: new DateHelper().getCommonDate(date, time)
+                                }));
+                                setActiveItem(null);
+                            }} 
+                            style={{flex: 0, height: 60, marginTop: 20}}
+                            > Записаться </MenuItem> }
                     </FormSection>
                 </MainTemplateBkg>
             </Modal>
