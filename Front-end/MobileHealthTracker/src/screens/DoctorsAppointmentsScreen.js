@@ -77,7 +77,6 @@ const DoctorsAppointmentsScreen = () => {
     const [editable, setEditable] = useState(false);
 
     const addAppointment = appointment => {
-        console.log(appointment);
         if(appointment.isValid()){
             appointments.push(appointment);
         }
