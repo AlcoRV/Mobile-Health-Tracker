@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MobileHealthTracker.Tools;
 
 namespace MobileHealthTracker.Controllers
 {
@@ -21,6 +22,7 @@ namespace MobileHealthTracker.Controllers
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
+
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
@@ -28,6 +30,25 @@ namespace MobileHealthTracker.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        public class Account //To Do: thing up something with this 
+        {
+            public string? Login { get; set; }
+            public string? Password { get; set; }
+        }
+
+
+        [HttpPost("SignUp")]
+        public string SignUp([FromBody] Account account )
+        {
+            var accountController = new AccountController()
+            {
+                Login = account.Login,
+                Password = account.Password,
+            };
+            accountController.SignUp();
+            return "success";
         }
     }
 }
