@@ -7,17 +7,27 @@ import MainTemplateBkg from "../components/MainTemplateBkg";
 const testPhoneList = [
     {
         name: 'Скорая мед. помощь',
-        phone: '103'
+        phone: '103',
+        important: true
     },
     {
         name: 'Служба экстренного реагирования',
-        phone: '112'
+        phone: '112',
+        important: true
     },
     {
         name: 'Терапевт',
-        phone: '+79378453464'
+        phone: '+79378453464',
+        important: false
     }
 ]
+
+const stylesByImportant = {
+    true: {
+        padding: 30
+    },
+    false: null
+}
 
 const QuickCallsScreen = () => {
     const [phoneList, setPhoneList] = useState(testPhoneList);
@@ -27,7 +37,8 @@ const QuickCallsScreen = () => {
             <FormSection>
                 <FlatList style={styles.list} data={phoneList} renderItem={({item}) => (
                     <MenuItem 
-                    colors={['#9C5800', '#E88A10']} 
+                    style={stylesByImportant[item.important]}
+                    colors={ item.important ? ['#ED213A', '#93291E'] : ['#9C5800', '#E88A10'] } 
                     onPress={() => {
                         Linking.openURL(`tel:${item.phone}`)
                     }} >
