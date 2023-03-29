@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MobileHealthTracker.Models;
 using MobileHealthTracker.Tools;
 
 namespace MobileHealthTracker.Controllers
@@ -31,13 +32,6 @@ namespace MobileHealthTracker.Controllers
             })
             .ToArray();
         }
-
-        public class Account //To Do: thing up something with this 
-        {
-            public string? Login { get; set; }
-            public string? Password { get; set; }
-        }
-
 
         [HttpPost("SignUp")]
         public string SignUp([FromBody] Account account )
