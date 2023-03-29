@@ -36,11 +36,7 @@ namespace MobileHealthTracker.Controllers
         [HttpPost("SignUp")]
         public string SignUp([FromBody] Account account )
         {
-            var accountController = new AccountController()
-            {
-                Login = account.Login,
-                Password = account.Password,
-            };
+            var accountController = new AccountController(account);
             accountController.SignUp();
             return "success";
         }
