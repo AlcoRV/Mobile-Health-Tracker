@@ -1,5 +1,6 @@
 ﻿using System.Net.Mail;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace MobileHealthTracker.Tools
 {
@@ -15,8 +16,20 @@ namespace MobileHealthTracker.Tools
 
         public void SignUp()
         {
-            //To Do: main logic and check Login and Password
-            SendHelloMessage();
+            if (IsDataValid())
+            {
+                SendHelloMessage();
+            }
+        }
+
+        private bool IsDataValid()
+        {
+            if(string.IsNullOrEmpty(Login) || string.IsNullOrEmpty(Password)) { return false; }
+
+            var regex = new Regex(@"[0-9a-zA-Z_\-.,]{8,16}");
+            if(!regex.IsMatch(Password)) { return false; }
+
+            return true;
         }
 
         private void SendHelloMessage()
