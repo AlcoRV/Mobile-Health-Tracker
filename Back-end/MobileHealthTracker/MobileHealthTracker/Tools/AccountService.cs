@@ -1,15 +1,17 @@
-﻿using System.Net.Mail;
+﻿using MobileHealthTracker.Models;
 using System.Net;
+using System.Net.Mail;
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.RegularExpressions;
-using MobileHealthTracker.Models;
 
 namespace MobileHealthTracker.Tools
 {
-    public class AccountController
+    public class AccountService
     {
         public Account Account { get; }
 
-        public AccountController(Account account)
+        public AccountService(Account account)
         {
             this.Account = account;
         }
@@ -23,7 +25,7 @@ namespace MobileHealthTracker.Tools
         {
             if (IsDataValid())
             {
-                SendSignUpMessage();
+                //SendSignUpMessage();
                 CreateAccount();
                 PushToBD();
             }
@@ -32,10 +34,10 @@ namespace MobileHealthTracker.Tools
         private bool IsDataValid()
         {
             if (Account is null) { return false; }
-            if(string.IsNullOrEmpty(Account.Login) || string.IsNullOrEmpty(Account.Password)) { return false; }
+            if (string.IsNullOrEmpty(Account.Login) || string.IsNullOrEmpty(Account.Password)) { return false; }
 
             var regex = new Regex(@"[0-9a-zA-Z_\-.,]{8,16}");
-            if(!regex.IsMatch(Account.Password)) { return false; }
+            if (!regex.IsMatch(Account.Password)) { return false; }
 
             return true;
         }
@@ -70,7 +72,10 @@ namespace MobileHealthTracker.Tools
 
         private void CreateAccount()
         {
-            throw new NotImplementedException();
+            Account.Id = Guid.NewGuid();
+            var md5 = MD5.Create();
+            var hash = md5.ComputeHash(Encoding.UTF8.GetBytes(Account.Password));
+            Account.Password = Convert.ToHexString(hash);
         }
 
         private void PushToBD()
