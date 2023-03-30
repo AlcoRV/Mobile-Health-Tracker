@@ -1,4 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using MobileHealthTracker;
+
 var builder = WebApplication.CreateBuilder(args);
+var configuration = new ConfigurationBuilder()
+                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                    .Build();
 
 // Add services to the container.
 
@@ -6,6 +12,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<DBContent>(options => options.UseSqlServer(configuration["ConnectionStrings:DefaultConnection"]));
 
 var app = builder.Build();
 
