@@ -19,6 +19,13 @@ namespace MobileHealthTracker.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
 
+        public class LoginData
+        {
+            public string Email { get; set; }
+            public string Password { get; set; }
+            public bool RememberMe { get; set; }
+        }
+
         public AppUserController(ILogger<AppUserController> logger, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _logger = logger;
@@ -28,21 +35,29 @@ namespace MobileHealthTracker.Controllers
 
         [AllowAnonymous]
         [HttpPost("SignUp")]
-        public async Task<string> SignUp([FromBody] AppUser user )
+        public async Task<string> SignUp([FromBody] LoginData loginData )
         {
-            var createdUser = await _userManager.FindByEmailAsync(user.Email.ToUpper());
+            if(loginData is null) { throw new NullReferenceException(); }
+            if(string.IsNullOrWhiteSpace(loginData.Email) || string.IsNullOrEmpty(loginData.Password)) { throw new ArgumentException("Not filled Email or Password!"); }
+
+            var createdUser = await _userManager.FindByEmailAsync(loginData.Email.ToUpper());
 
             if (createdUser != null) { return "User has been already created!"; }
 
+            var user = new AppUser() { 
+                UserName = loginData.Email.Split('@')[0],
+                Email = loginData.Email,
+            };
+
             var helper = new AppUserHelper(user);
-            if (helper.IsUsersDataValid())
+            if (helper.IsPasswordValid(loginData.Password))
             {
                 helper.FillUserData();
-                var result = await _userManager.CreateAsync(user);
+                var result = await _userManager.CreateAsync(user, loginData.Password);
 
                 if(result.Succeeded)
                 {
-                    helper.SendSignUpMessage();
+                    //helper.SendSignUpMessage();
                 }
                 return "success";
             }
@@ -51,15 +66,21 @@ namespace MobileHealthTracker.Controllers
 
         [AllowAnonymous]
         [HttpPost("LogIn")]
-        public async Task<string> LogIn([FromBody] AppUser user)
+        public async Task<string> LogIn([FromBody] LoginData loginData)
         {
-            var createdUser = await _userManager.FindByEmailAsync(user.Email.ToUpper());
+            if (loginData is null) { throw new NullReferenceException(); }
+            if (string.IsNullOrWhiteSpace(loginData.Email) || string.IsNullOrEmpty(loginData.Password)) { throw new ArgumentException("Not filled Email or Password!"); }
+
+            var createdUser = await _userManager.FindByEmailAsync(loginData.Email.ToUpper());
 
             if (createdUser is null) { return "User has not been created yet!"; }
-            if (user.Password.IsNullOrEmpty()) { return "Password is not written!"; }
+            if (loginData.Password.IsNullOrEmpty()) { return "Password is not written!"; }
 
             //To Do: ....
-            if (true)
+
+            var result = await _userManager.CheckPasswordAsync(createdUser, loginData.Password);
+
+            if (result)
             {
                 return "success";
             }
