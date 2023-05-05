@@ -4,6 +4,7 @@ import CommonMainBlock from "../components/MainMenu/CommonMainBlock";
 import MainTemplateBkg from "../components/MainTemplateBkg";
 import MenuItem from "../components/MainMenu/MenuItem";
 import { useNavigation } from "@react-navigation/native";
+import { ShowNotification } from "../components/options/NotificationHelper";
 
 const MedCardScreen = () => {
     const navigation = useNavigation();
@@ -13,7 +14,7 @@ const MedCardScreen = () => {
             <CommonMainBlock flex={2} />
             <View style={{flex: 5}}>
                 <MenuItem onPress={() => navigation.navigate("DoctorsAppointments")}>Записи к врачу</MenuItem>
-                <MenuItem>Найти врача</MenuItem>
+                <MenuItem onPress={() => ShowNotification("qwrtyl", "awesgrdtyuio")}>Найти врача</MenuItem>
                 <MenuItem>Посмотреть мед. карточку</MenuItem>
             </View>
             <View style={{flex: 1, alignItems: "flex-end"}}>
