@@ -14,6 +14,7 @@ import QuickCallsScreen from "../src/screens/QuickCallsScreen";
 import TabNavigator from "./TabNavigator";
 import { TimeDefineScreen } from "../src/components/options/TimeDefineScreen";
 import MedicineItemScreen from "../src/components/Medicines/MedicineItemScreen";
+import StatisticScreen from "../src/components/StatisticScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -36,6 +37,7 @@ const NavigatorContainer = () => {
                 <Stack.Screen name="DoctorsAppointments" component={DoctorsAppointmentsScreen} />
                 <Stack.Screen name="MedicineItem" component={MedicineItemScreen} />
                 <Stack.Screen name="TimeDefine" component={TimeDefineScreen} />
+                <Stack.Screen name="Statistic" component={StatisticScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );

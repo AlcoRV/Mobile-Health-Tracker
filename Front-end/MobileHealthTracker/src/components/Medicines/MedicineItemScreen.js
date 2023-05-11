@@ -38,7 +38,7 @@ const MedicineItemScreen = ({route}) => {
                     <BackButton/>
                     <View style={{flex: 1, margin: 35, marginRight: 10, marginTop: 10,
                                    borderRadius: 15, borderWidth: 2 }} >
-                        <TouchableOpacity style={{flex: 1}} onPress={() => {}}>
+                        <TouchableOpacity style={{flex: 1}} onPress={() => navigation.navigate("Statistic") }>
                             <Text style={{flex: 1, textAlign: "center", textAlignVertical: "center", fontSize: 20}}>Просмотр статистики</Text>
                         </TouchableOpacity>
                     </View>
