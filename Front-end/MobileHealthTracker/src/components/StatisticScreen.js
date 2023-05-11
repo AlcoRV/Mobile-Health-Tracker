@@ -1,5 +1,5 @@
 import React from "react";
-import { Dimensions, View } from "react-native";
+import { Dimensions, Text, View } from "react-native";
 import MainTemplateBkg from "./MainTemplateBkg";
 import BackButton from "./BackButton";
 import {
@@ -10,6 +10,7 @@ import {
     ContributionGraph,
     StackedBarChart
   } from "react-native-chart-kit";
+
 
 const testData = [
     {
@@ -64,8 +65,10 @@ const StatisticScreen = () => {
         //backgroundColor: '#f000f0',
     backgroundGradientFrom: '#eff3ff',
     backgroundGradientFromOpacity: 0.3,
+    fillShadowGradientFromOffset: 0.55,
     backgroundGradientTo: '#efefef',
     backgroundGradientToOpacity: 0,
+    fillShadowGradientToOffset: 1,
     decimalPlaces: 2,
     color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
     fillShadowGradient: "skyblue",
@@ -98,6 +101,8 @@ const StatisticScreen = () => {
             <BackButton />
             
             <View style={{flex: 4 }}>
+                <Text style={{alignSelf: "center", marginBottom: 10, 
+                                fontSize: 20, color: "#ff0"}}>Статистика приёма лекарств</Text>
                 <BarChart style={{borderRadius: 20}}
                     data={data}
                     width={screenWidth}
