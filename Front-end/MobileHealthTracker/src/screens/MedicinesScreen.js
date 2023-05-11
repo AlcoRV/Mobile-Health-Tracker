@@ -5,6 +5,15 @@ import FormSection from "../components/FormSection";
 import MenuItem from "../components/MainMenu/MenuItem";
 import MainTemplateBkg from "../components/MainTemplateBkg";
 import RNDateTimePicker from '@react-native-community/datetimepicker';
+import { useNavigation } from "@react-navigation/native";
+
+const defaultTimes = [
+    new Date(`0001-01-01T10:00:00.000Z`),
+    new Date(`0001-01-01T12:00:00.000Z`),
+    new Date(`0001-01-01T14:00:00.000Z`),
+    new Date(`0001-01-01T16:00:00.000Z`),
+    new Date(`0001-01-01T18:00:00.000Z`)
+];
 
 const testMedicines = [
     {
@@ -13,7 +22,8 @@ const testMedicines = [
         recipe: 'Приём по таким-то дням и по столько',
         needToTake: 5,
         taked: 1,
-        takingTimes: [new Date()],
+        takingTimes: defaultTimes,
+        activeNotification: false
     },
     {
         name: 'Лекарство2',
@@ -21,7 +31,8 @@ const testMedicines = [
         recipe: 'Приём по таким-то дням и по столько',
         needToTake: 5,
         taked: 1,
-        takingTimes: []
+        takingTimes: [],
+        activeNotification: false
     },
     {
         name: 'Лекарство3',
@@ -29,7 +40,8 @@ const testMedicines = [
         recipe: 'Приём по таким-то дням и по столько',
         needToTake: 5,
         taked: 1,
-        takingTimes: []
+        takingTimes: [],
+        activeNotification: false
     },
     {
         name: 'Лекарство4',
@@ -37,7 +49,8 @@ const testMedicines = [
         recipe: 'Приём по таким-то дням и по столько',
         needToTake: 5,
         taked: 1,
-        takingTimes: []
+        takingTimes: [],
+        activeNotification: false
     },
     {
         name: 'Лекарство5',
@@ -45,7 +58,8 @@ const testMedicines = [
         recipe: 'Приём по таким-то дням и по столько',
         needToTake: 5,
         taked: 1,
-        takingTimes: []
+        takingTimes: [],
+        activeNotification: false
     },
     {
         name: 'Лекарство6',
@@ -53,7 +67,8 @@ const testMedicines = [
         recipe: 'Приём по таким-то дням и по столько',
         needToTake: 5,
         taked: 1,
-        takingTimes: []
+        takingTimes: [],
+        activeNotification: false
     },
     {
         name: 'Лекарство7',
@@ -61,7 +76,8 @@ const testMedicines = [
         recipe: 'Приём по таким-то дням и по столько',
         needToTake: 5,
         taked: 1,
-        takingTimes: []
+        takingTimes: [],
+        activeNotification: false
     },
     {
         name: 'Лекарство8',
@@ -69,7 +85,8 @@ const testMedicines = [
         recipe: 'Приём по таким-то дням и по столько',
         needToTake: 5,
         taked: 1,
-        takingTimes: []
+        takingTimes: [],
+        activeNotification: false
     },
     {
         name: 'Лекарство9',
@@ -77,7 +94,8 @@ const testMedicines = [
         recipe: 'Приём по таким-то дням и по столько',
         needToTake: 5,
         taked: 1,
-        takingTimes: []
+        takingTimes: [],
+        activeNotification: false
     },
     {
         name: 'Лекарство10',
@@ -85,7 +103,8 @@ const testMedicines = [
         recipe: 'Приём по таким-то дням и по столько',
         needToTake: 5,
         taked: 1,
-        takingTimes: []
+        takingTimes: [],
+        activeNotification: false
     },
     {
         name: 'Лекарство11',
@@ -93,7 +112,8 @@ const testMedicines = [
         recipe: 'Приём по таким-то дням и по столько',
         needToTake: 5,
         taked: 1,
-        takingTimes: []
+        takingTimes: [],
+        activeNotification: false
     },
     {
         name: 'Лекарство12',
@@ -101,7 +121,8 @@ const testMedicines = [
         recipe: 'Приём по таким-то дням и по столько',
         needToTake: 5,
         taked: 1,
-        takingTimes: []
+        takingTimes: [],
+        activeNotification: false
     },
     {
         name: 'Лекарство13',
@@ -109,7 +130,8 @@ const testMedicines = [
         recipe: 'Приём по таким-то дням и по столько',
         needToTake: 5,
         taked: 1,
-        takingTimes: []
+        takingTimes: [],
+        activeNotification: false
     },
     {
         name: 'Лекарство14',
@@ -117,7 +139,8 @@ const testMedicines = [
         recipe: 'Приём по таким-то дням и по столько',
         needToTake: 5,
         taked: 1,
-        takingTimes: []
+        takingTimes: [],
+        activeNotification: false
     },
     {
         name: 'Лекарство15',
@@ -125,7 +148,8 @@ const testMedicines = [
         recipe: 'Приём по таким-то дням и по столько',
         needToTake: 5,
         taked: 1,
-        takingTimes: []
+        takingTimes: [],
+        activeNotification: false
     },
     {
         name: 'Лекарство16',
@@ -133,7 +157,8 @@ const testMedicines = [
         recipe: 'Приём по таким-то дням и по столько',
         needToTake: 5,
         taked: 1,
-        takingTimes: []
+        takingTimes: [],
+        activeNotification: false
     }
 ]
 
@@ -141,6 +166,7 @@ const ItemDescription = ({visible, medicine}) => {
     const {activeItem, setActiveItem} = medicine;
     const [time, setTime] = useState(new Date());
     const [showTimePicker, setShowTimePicker] = useState(false);
+    const navigation = useNavigation();
 
     const onChange = (event, selectedDate) => {
         const currentTime = selectedDate || time;
@@ -172,7 +198,7 @@ const ItemDescription = ({visible, medicine}) => {
                 <Text style={styles.modalPersonalRecipe}>{`Личные рекомендации:\n${activeItem.recipe}`}</Text>
                 <View style={{flexDirection: "row", marginHorizontal: 20, marginBottom: 20}}>
                     <View flex={3}>
-                    <Text>{`Принято: ${activeItem.takingTimes.length}/${activeItem.needToTake}`}</Text>
+                    <Text>{`Назначенное время: `}</Text>
                     {
                         activeItem.takingTimes.map((item) => (
                             <Text >{item.toLocaleTimeString().slice(0,-3)}</Text>
@@ -180,8 +206,8 @@ const ItemDescription = ({visible, medicine}) => {
                     }
                     { showTimePicker && <RNDateTimePicker  display="default" mode='time' value={time} onChange={onChange}/> }
                     </View>
-                    <View style={styles.modalChangeTimesButton}>
-                        <TouchableOpacity onPress={() => fillListTime()}>
+                    <View style={[styles.modalChangeTimesButton, {alignSelf: "center"}]}>
+                        <TouchableOpacity style={{}} onPress={() => navigation.navigate("TimeDefine")  /*fillListTime()*/}>
                             <Text style={{textAlign: "center", textAlignVertical: "center"}}>Изменить время приёма</Text>
                         </TouchableOpacity>
                     </View>
@@ -194,6 +220,7 @@ const ItemDescription = ({visible, medicine}) => {
 const MedicinesScreen = () => {
     const [listMedicines, setListMedicines] = useState(testMedicines);
     const [activeItem, setActiveItem] = useState(null);
+    const navigation = useNavigation();
 
     return(
         <MainTemplateBkg>
@@ -203,7 +230,8 @@ const MedicinesScreen = () => {
                     <MenuItem 
                     colors={['#9C5800', '#E88A10']} 
                     onPress={() => {
-                        setActiveItem(item)
+                        //setActiveItem(item)
+                        navigation.navigate("MedicineItem", {medicine: item})
                     }} >
                         {item.name}
                     </MenuItem>
