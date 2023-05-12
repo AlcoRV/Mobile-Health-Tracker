@@ -1,8 +1,8 @@
 import { registerRootComponent } from 'expo';
-
 import App from './App';
 import PushNotification from 'react-native-push-notification';
 import { Platform } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 PushNotification.configure({
     onRegister: function (token) {

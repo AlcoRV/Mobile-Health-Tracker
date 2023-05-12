@@ -12,54 +12,36 @@ import {
   } from "react-native-chart-kit";
 
 
-const testData = [
-    {
-        date: new Date(Date.now() - 1000*60*2),
-        accepted: true
-    },
-    {
-        date: new Date(Date.now() - 1000*60*4),
-        accepted: true
-    },
-    {
-        date: new Date(Date.now() - 1000*60*6),
-        accepted: true
-    },
-    {
-        date: new Date(Date.now() - 1000*60*8),
-        accepted: false
-    },
-    {
-        date: new Date(Date.now() - 1000*60*10),
-        accepted: false
-    },
-    {
-        date: new Date(Date.now() - 1000*60*12),
-        accepted: true
-    },
-    {
-        date: new Date(Date.now() - 1000*60*14),
-        accepted: true
-    },
-    {
-        date: new Date(Date.now() - 1000*60*16),
-        accepted: false
-    },
-    {
-        date: new Date(Date.now() - 1000*60*18),
-        accepted: false
-    },
-    {
-        date: new Date(Date.now() - 1000*60*20),
-        accepted: false
-    },
-    {
-        date: new Date(Date.now() - 1000*60*22),
-        accepted: true
+const getAcceptArray = () => {
+    const start = new Date(2023, 4, 1); // May 1, 2023
+    const end = new Date(2023, 4, 31); // May 31, 2023
+    const data = [];
+    for (let i = 0; i < 50; i++) {
+        const randomTimestamp = start.getTime() + Math.random() * (end.getTime() - start.getTime());
+        const randomDate = new Date(randomTimestamp);
+        const isAccepted = Math.random() >= 0.3 ? true : false;
+        data.push({
+            isAccepted: isAccepted,
+            date: randomDate
+        });
     }
-];
 
-const StatisticScreen = () => {
+    return data;
+}
+
+const getDataForWeeks = (acceptArray) => {
+    const data = [0, 0, 0, 0, 0];
+    acceptArray.forEach(el => {
+        const index = (el.date.getDate() - 1) / 7;
+        if(el.isAccepted){ data[index]++; }
+    });
+    return data;
+}
+
+
+const StatisticScreen = ({route}) => {
+
+    const {title, datar} = route.params;
 
     const chartConfig = {
         //backgroundColor: '#f000f0',
@@ -82,11 +64,15 @@ const StatisticScreen = () => {
         },
       };
 
+
+      const acceptArray = getAcceptArray();
+      const countAcceptForWeeks = getDataForWeeks(acceptArray);
+
       const data = {
-        labels: ["January", "February", "March", "April", "May", "June"],
+        labels: [1, 2, 3, 4, 5],
         datasets: [
           {
-            data: [20, 45, 28, 80, 99, 43],
+            data: countAcceptForWeeks,
             color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
             strokeWidth: 2 // optional
           }
@@ -107,7 +93,8 @@ const StatisticScreen = () => {
                     data={data}
                     width={screenWidth}
                     height={500}
-                    //yAxisLabel="$"
+                    //xAxisLabel="$"
+                    
                     chartConfig={chartConfig}
                     verticalLabelRotation={30}
                     />

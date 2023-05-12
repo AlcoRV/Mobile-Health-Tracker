@@ -14,7 +14,7 @@ const MedCardScreen = () => {
             <CommonMainBlock flex={2} />
             <View style={{flex: 5}}>
                 <MenuItem onPress={() => navigation.navigate("DoctorsAppointments")}>Записи к врачу</MenuItem>
-                <MenuItem onPress={() => ShowNotification("qwrtyl", "awesgrdtyuio")}>Найти врача</MenuItem>
+                <MenuItem onPress={() => navigation.navigate("MedicineDefine")}>Найти врача</MenuItem>
                 <MenuItem>Посмотреть мед. карточку</MenuItem>
             </View>
             <View style={{flex: 1, alignItems: "flex-end"}}>
