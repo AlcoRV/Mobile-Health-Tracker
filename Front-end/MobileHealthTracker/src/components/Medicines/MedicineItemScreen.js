@@ -46,7 +46,7 @@ const MedicineItemScreen = ({route}) => {
                 <Text style={styles.modalHeader}>{medicine.name}</Text>
                 <Text style={styles.modalDescription}>{`Общее описание:\n${medicine.description}`}</Text>
                 <Text style={styles.modalPersonalRecipe}>{`Личные рекомендации:\n${medicine.recipe}`}</Text>
-                <View style={{flexDirection: "row", marginHorizontal: 20, marginBottom: 20}}>
+                <View style={{flexDirection: "row", marginHorizontal: 20, marginBottom: 20, flex: 1}}>
                     <View flex={3}>
                     <Text>{`Назначенное время: `}</Text>
                     {
@@ -86,12 +86,12 @@ const styles = StyleSheet.create({
         fontSize: 22 
     },
     modalDescription: {
-        flex: 1,
+        flex: 2,
         marginHorizontal: 20,
         fontSize: 16
     },
     modalPersonalRecipe: {
-        flex: 1,
+        flex: 2,
         marginHorizontal: 20,
         fontSize: 16
     },

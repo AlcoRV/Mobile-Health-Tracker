@@ -39,9 +39,9 @@ const getDataForWeeks = (acceptArray) => {
 }
 
 
-const StatisticScreen = ({route}) => {
+const StatisticScreen = ({}) => {
 
-    const {title, datar} = route.params;
+    //const {title, datar} = route.params;
 
     const chartConfig = {
         //backgroundColor: '#f000f0',
@@ -88,12 +88,14 @@ const StatisticScreen = ({route}) => {
             
             <View style={{flex: 4 }}>
                 <Text style={{alignSelf: "center", marginBottom: 10, 
-                                fontSize: 20, color: "#ff0"}}>Статистика приёма лекарств</Text>
+                                fontSize: 20, color: "#ff0"}}>Статистика месяца по</Text>
+                <Text style={{alignSelf: "center", marginBottom: 10, 
+                                fontSize: 20, color: "#ff0"}}>Витамин С</Text>
                 <BarChart style={{borderRadius: 20}}
                     data={data}
                     width={screenWidth}
                     height={500}
-                    //xAxisLabel="$"
+                    //xAxisLabel="$" 
                     
                     chartConfig={chartConfig}
                     verticalLabelRotation={30}
